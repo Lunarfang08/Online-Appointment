@@ -1,0 +1,107 @@
+/* Add your CSS styles here */
+* {
+    transition: 0.2s;
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .sign-container {
+    width: 100vw;
+    height: 100vh;
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://wallpaperbat.com/img/394734-4k-gaming-wallpaper-image-is-cool-wallpaper-papel-de-parede-pc.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .sign-modal {
+    width: 400px;
+    background: linear-gradient(to right, #2c4d6a 0%, #0d5ea0 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+  }
+  
+  .form-wrapper {
+    padding: 40px;
+  }
+  
+  .form {
+    text-align: center;
+  }
+  
+  .form h2 {
+    margin-bottom: 20px;
+    color: #fff;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #333;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: #00c3ff;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background: #0056b3;
+  }
+  
+  .slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .slider {
+    width: 70px;
+    height: 30px;
+    background-color: #ddd;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .slider.slide {
+    background-color: #000000;
+  }
+  
+  .slider-button {
+    width: 26px;
+    height: 26px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s;
+  }
+  
+  .slider.slide .slider-button {
+    transform: translateX(40px);
+  }
+  
+  span {
+    margin-left: 10px;
+    color: #4198f4;
+  }
+  

@@ -1,0 +1,126 @@
+.im3 {
+    background: url('https://getwallpapers.com/wallpaper/full/a/0/8/23691.jpg') no-repeat center center fixed;
+    background-attachment: fixed;
+    background-position: center center;
+    box-sizing: border-box;
+    height: 100vh;
+  }
+  
+  .game-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    transition: box-shadow 0.3s; /* Add transition for box-shadow */
+  }
+  .game-container:hover {
+    transform: scale(1.05); /* Scale up the container on hover */
+    transition: transform 0.3s ease; /* Add smooth transition for scaling */
+  }
+  
+  .number1 {
+    font-size: 6.2rem;
+    margin-bottom: 20px;
+    color: #333;
+    animation: pulse 0.6s infinite alternate;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.1);
+    }
+  }
+  
+  .info-container {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  
+  .score,
+  .time {
+    font-size: 1.5rem;
+    color: #555;
+  }
+  
+  .input-container {
+    margin-bottom: 10px;
+  }
+  
+  input[type='number'] {
+    font-size: 1rem;
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    width: 200px;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+  
+  input[type='number']:focus {
+    border-color: #007bff;
+    transform: scale(1.05);
+  }
+  
+  .button-container button {
+    font-size: 1rem;
+    padding: 8px 15px;
+    margin-top: 0;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Add box-shadow transition */
+  }
+  
+  .button-container button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  }
+  
+  .difficulty-container {
+    margin-bottom: 20px; /* Add space below the difficulty buttons */
+  }
+
+  .difficulty-container button {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    margin: 0 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    margin-right: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Add box-shadow transition */
+  }
+  
+  .difficulty-container button:hover {
+    background-color: #0056b3;
+    transform: scale(1.05); /* Add scale transformation on hover */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  }
+  
+  .timer-controls button {
+    font-size: 0.9rem; /* Decrease the font size */
+    padding: 8px 12px; /* Adjust padding for smaller size */
+    margin-right: 10px; /* Add margin between the buttons */    
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Add box-shadow transition */
+    margin-top: 20px;
+  }
+  
+  .timer-controls button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow effect */
+  }
+  

@@ -1,0 +1,170 @@
+.img3{
+    background: url('https://getwallpapers.com/wallpaper/full/a/0/8/23691.jpg') no-repeat center center fixed; /* Add your image path */
+    background-attachment: fixed;
+    background-position: center center;
+    box-sizing: border-box;
+    height: 100vh; /* Set the height to cover the full viewport height */
+  }
+
+.dragon-box {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .dragon-box:hover {
+    box-shadow: 0 0 20px rgba(252, 246, 246, 0.2);
+  }
+  
+  .equation {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .answer-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .answer-input:focus {
+    border-color: #4caf50;
+  }
+  
+  .check-btn,
+  .change-operator-btn {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .check-btn:hover,
+  .change-operator-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .result-message {
+    margin-top: 15px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .result-message.correct,
+  .result-message.incorrect {
+    opacity: 1;
+  }
+  
+  .correct {
+    color: #4caf50;
+  }
+  
+  .incorrect {
+    color: #ff0000;
+  }
+  .Title{
+    color: #fff;
+  }
+  
+  @media screen and (max-width: 500px) {
+    .dragon-box {
+      max-width: 100%;
+    }
+  }
+  
+  
+  .equation {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .equation:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+  }
+  
+  .answer-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .answer-input:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); /* Glow effect on focus */
+  }
+  
+  
+  
+  .check-btn:hover,
+  .change-operator-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05); /* Slightly grow and change color on hover */
+  }
+  
+  .result-message {
+    margin-top: 15px;
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s ease;
+  }
+  
+  .result-message.correct,
+  .result-message.incorrect {
+    opacity: 1;
+    transform: translateY(-10px); /* Slide up effect */
+  }
+  
+  .correct {
+    color: #4caf50;
+  }
+  
+  .incorrect {
+    color: #ff0000;
+  }
+  
+  .level-indicator {
+    font-size: 16px;
+    margin-top: 10px;
+    color: #ffffff;
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .level-indicator:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+  }
+  
+  @media screen and (max-width: 500px) {
+    .dragon-box {
+        max-width: 90%; /* Adjust width for smaller screens */
+        padding: 15px; /* Adjust padding for smaller screens */
+    }
+  
+    .equation,
+    .level-indicator {
+        font-size: 20px; /* Adjust font size for smaller screens */
+    }
+  }
+  

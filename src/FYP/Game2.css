@@ -1,0 +1,204 @@
+.nn {
+  background: url('https://getwallpapers.com/wallpaper/full/a/0/8/23691.jpg') no-repeat center center fixed; /* Add your image path */
+  background-attachment: fixed;
+  background-position: center center;
+  box-sizing: border-box;
+  height: 100vh; /* Set the height to cover the full viewport height */
+}
+.col{
+  color: black;
+}
+@media (max-width: 768px) {
+  .object {
+    width: 25px;
+    height: 25px;
+  }
+
+  .count {
+    font-size: 1.2rem;
+    margin: 5px; /* Adjust margins for smaller screens if needed */
+    padding: 5px; /* Adjust padding for smaller screens if needed */
+  }
+
+  /* Additional adjustments for other elements can be added here */
+}
+/* Game Container Styles */
+.game-container {
+  text-align: center;
+  background-color: #ffffff;
+  padding: 2%;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+  margin: auto; /* Center the container */
+  position: relative;
+  overflow: hidden; /* Ensures that nothing spills out of the container */
+}
+
+/* Header Styles */
+h1 {
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  animation: fadeInDown 1s both;
+}
+
+/* Paragraph Styles */
+.COUNT2 {
+  margin-bottom: 2%;
+  font-size: 1.2rem;
+  color: #555;
+  animation: fadeIn 1s both;
+}
+
+/* Object Display Styles */
+.object-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  perspective: 1000px; /* For 3D rotation */
+}
+
+.object {
+  width: 30px;
+  height: 30px;
+  background-color: #3498db;
+  margin: 5px;
+  border-radius: 50%;
+  animation: rotate 2s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Count Options Styles */
+.count-options {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.count {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin: 10px;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.count:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+/* Result Styles */
+.result {
+  margin-top: 2%;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  transition: color 0.3s;
+  animation: fadeInUp 1s both;
+}
+
+.result.correct {
+  color: #27ae60; /* Ensuring visibility */
+}
+
+.result.incorrect {
+  color: #c0392b; /* Ensuring visibility */
+}
+
+/* Action Button Styles */
+.action-button {
+  cursor: pointer;
+  font-size: 1.5rem;
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #e74c3c;
+  color: #fff;
+  border-radius: 2px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.action-button:hover {
+  background-color: #c0392b;
+  transform: scale(1.05);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -50%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(231, 76, 60, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(231, 76, 60, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(231, 76, 60, 0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .object {
+    width: 25px;
+    height: 25px;
+  }
+
+  .count {
+    font-size: 1.2rem;
+  }
+
+  .result {
+    font-size: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+}

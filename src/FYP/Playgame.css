@@ -1,0 +1,170 @@
+.playgame-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  animation: fadeIn 1s ease-in-out;
+  background-image: url('https://img.freepik.com/free-vector/low-poly-network-mesh-connection-design_1017-29580.jpg?w=1060&t=st=1706280594~exp=1706281194~hmac=1532877cbcad1c529bb5d9c9dfbadd800a01df0409b78ae2dea92024feb755d9');
+  background-size: cover; /* Cover the entire space */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-attachment: fixed; /* Fixed background on scroll */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navigation-container {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.game-link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 4px;
+  transition: transform 0.3s, background-color 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+
+.game-link:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: left 0.3s;
+  z-index: 0;
+}
+
+.game-link:hover:before {
+  left: 100%;
+}
+
+.game-link:hover {
+  transform: translateY(-5px);
+  background-color: #167bbe;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .navigation-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Add this new keyframe for floating effect */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.navigation-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('https://img.freepik.com/free-vector/low-poly-network-mesh-connection-design_1017-29580.jpg?w=1060&t=st=1706280594~exp=1706281194~hmac=1532877cbcad1c529bb5d9c9dfbadd800a01df0409b78ae2dea92024feb755d9');
+  background-repeat: no-repeat;
+  background-size: 150% 150%; /* Oversize the background for the movement effect */
+  z-index: -1;
+  opacity: 0.6; /* Keep the background subtle */
+  transition: transform 0.5s ease-out;
+}
+
+.navigation-container {
+  position: relative; /* To position the pseudo-element */
+ 
+}
+
+.game-link {
+  perspective: 500px; /* Prepare for the 3D tilt effect */
+   
+}
+
+.game-link:hover .icon {
+  animation: float 2s ease-in-out infinite; /* Apply the float animation to the icon */
+}
+
+.game-link > * {
+  transition: transform 0.3s;
+  transform: translateZ(0); /* Prepare for the 3D effect */
+}
+
+.game-link:hover > * {
+  transform: translateZ(10px); /* Lift the content on hover for a 3D effect */
+}
+
+/* Add transitions for the 3D tilt effect */
+.game-link {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.game-link:hover {
+  transform: rotateX(-5deg) rotateY(5deg);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+}
+.back-to-home {
+  color: #fff; /* White text color */
+  background-color: #a70cf0; /* Purple background */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 14px 16px;
+  text-align: center;
+  transition: 0.3s; /* Smoother transition */
+  text-decoration: none;
+  position: fixed; /* Fixed position */
+  bottom: 20px; /* Distance from bottom */
+  right: 20px; /* Distance from right */
+  z-index: 1000; /* Stay on top */
+  cursor: pointer; /* Cursor as pointer */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+.back-to-home:hover {
+  color: #fff;
+  background-color: #c40000; /* Red background on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Larger shadow on hover */
+}
+
+@media (max-width: 768px) {
+  .back-to-home {
+      right: 10px; /* Adjust for smaller screens */
+      bottom: 10px;
+      padding: 10px 12px; /* Smaller padding for smaller screens */
+  }
+}

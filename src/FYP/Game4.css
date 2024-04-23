@@ -1,0 +1,130 @@
+/* Logic Maze Styles */
+
+.logic-maze {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.maze-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 60px);
+  grid-template-rows: repeat(5, 60px);
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.cell {
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.wall {
+  background-color: #8b5e3c;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.path {
+  background-color: #fff3e0;
+}
+
+.current {
+  background-color: #4caf50; /* Highlight current position */
+  transform: scale(1.1);
+  z-index: 1;
+}
+
+/* Question Panel Styles */
+.question-panel {
+  padding: 15px;
+  border: 2px solid #4caf50;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Controls Styles */
+.controls {
+  display: flex;
+  justify-content: center;
+}
+
+.controls button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin: 0 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.controls button:hover {
+  background-color: #367c39;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .maze-grid {
+    grid-template-columns: repeat(5, 40px);
+    grid-template-rows: repeat(5, 40px);
+  }
+
+  .cell {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.maze-finished {
+  font-size: 24px;
+  background-color: #2ec5dc;
+  color: #FFFFFF;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out, scaleIn 0.5s ease-in-out, pulse 2s infinite alternate;
+  transition: opacity 0.3s ease-in-out;
+}
+/* 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+
+.maze-finished:hover {
+  opacity: 0.9;
+} */

@@ -1,0 +1,917 @@
+.navbar {
+    position: relative; /* or 'fixed' if you want it to stay at the top while scrolling */
+    z-index: 10; 
+    background-color: #004d40;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-brand {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .navbar-toggler {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    display: block; /* Show the toggler on all screen sizes */
+  }
+  
+  
+  .navbar-toggler:focus {
+    outline: none;
+  }
+  
+  .toggler-icon {
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    background-color: white;
+    margin: 4px 0;
+    transition: all 0.3s;
+  }
+  
+  .nav-menu {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-menu.collapsed {
+    display: none;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    color: #26a69a;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-toggler {
+      display: block;
+    }
+  
+    .nav-menu {
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: #004d40;
+    }
+  }  
+  .home-content {
+    padding: 2rem 1rem; /* Responsive padding */
+    color: aliceblue;
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .home-content {
+      padding: 1.5rem 0.5rem;
+    }
+  
+    /* Adjust font sizes for smaller screens */
+    .home-content h1 {
+      font-size: 1.5rem;
+    }
+  
+    .home-content p {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Additional styles for other elements if needed */
+  .learning-topics {
+    background-color: #f8f9fa; /* Light background for the section */
+    padding: 2rem; /* Spacing around the content */
+    text-align: center; /* Center-align the header */
+  }
+  
+  .learning-topics-header {
+    margin-bottom: 2rem; /* Space below the header */
+    color: #333; /* Dark text for contrast */
+  }
+  
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive grid layout */
+    gap: 1rem; /* Spacing between grid items */
+    padding: 0;
+  }
+  
+  .topic {
+    background-color: #fff; /* White background for each topic */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 1rem; /* Padding inside each topic */
+    border-radius: 0.5rem; /* Rounded corners */
+    list-style: none; /* Remove default list styling */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .topic:hover {
+    transform: scale(1.05); /* Slightly scale up the card */
+    box-shadow: 0 0.75rem 1.5rem rgba(0, 99, 248, 0.29); /* Increase the shadow for a 'lifting' effect */
+  }
+  @media (max-width: 600px) {
+    .topics-grid {
+      grid-template-columns: 1fr; /* Stack the topics on small screens */
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .topic {
+      animation: none;
+    }
+  
+    .topic:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+  
+  .topic h3 {
+    color: #004d40; /* Dark green color matching the navbar */
+    margin-bottom: 1rem; /* Space below the topic header */
+  }
+  
+  .topic ul {
+    padding-left: 0; /* Remove default padding */
+  }
+  
+  .topic li {
+    text-align: left; /* Left-align the list items */
+    line-height: 1.6; /* Space out the list items */
+  }
+  
+  @media (max-width: 600px) {
+    .topics-grid {
+      grid-template-columns: 1fr; /* Stack the topics on small screens */
+    }
+  }
+  
+  /* Continue with the existing styles and add these new ones for animation */
+
+/* Initial state of the topic cards */
+.topic {
+    opacity: 0;
+    transform: translateY(20px);
+    visibility: hidden;
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 0.3s; /* This delay ensures that the cards don't animate all at once */
+  }
+  
+  /* Keyframes for the fadeInUp animation */
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      visibility: visible;
+    }
+  }
+  
+  /* Use the nth-child selector to stagger the animation of each card */
+  .topic:nth-child(1) {
+    animation-delay: 0.3s;
+  }
+  
+  .topic:nth-child(2) {
+    animation-delay: 0.6s; /* Delay the second card slightly more */
+  }
+  
+  .topic:nth-child(3) {
+    animation-delay: 0.9s; /* and so on... */
+  }
+  
+  /* ... add more nth-child selectors as needed for more cards ... */
+  
+  @media (prefers-reduced-motion: reduce) {
+    /* Accessibility consideration for users who prefer reduced motion */
+    .topic {
+      animation: none;
+    }
+  }
+  
+
+  /* SectionComponent.css */
+.section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.section-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.text-content h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.text-content p {
+  font-size: 16px;
+  color: #666;
+}
+
+.image-content {
+  /* Placeholder for the image dimensions */
+  width: 200px; /* Adjust as necessary */
+  height: 120px; /* Adjust as necessary */
+  background-color: #ddd; /* Placeholder color */
+}
+
+@media (max-width: 768px) {
+  .section-content {
+    flex-direction: column;
+  }
+
+  .image-content {
+    margin-top: 20px;
+  }
+}
+
+
+
+/* Home.css */
+
+.feature-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  margin: 20px 0;
+}
+
+/* Styles when text is on the right */
+.feature-section.right-text .feature-text {
+  order: 2; /* Text on the right */
+}
+
+.feature-section.right-text .feature-image {
+  order: 1; /* Image on the left */
+}
+
+/* Styles when text is on the left */
+.feature-section.left-text .feature-text {
+  order: 1; /* Text on the left */
+}
+
+.feature-section.left-text .feature-image {
+  order: 2; /* Image on the right */
+}
+
+.feature-text {
+  flex: 1;
+  padding: 0 20px; /* Spacing between text and image */
+}
+
+.feature-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature-image img {
+  width: 100%;
+  max-height: 300px; /* Adjust as needed */
+  object-fit: cover;
+}
+
+/* Ensure proper ordering on smaller screens */
+@media (max-width: 768px) {
+  .feature-section {
+    flex-direction: column;
+  }
+
+  .feature-text,
+  .feature-image {
+    order: unset;
+    padding: 0; /* Remove padding on smaller screens */
+  }
+
+  .feature-image img {
+    max-width: 100%;
+    max-height: 200px; /* Adjust for smaller screens */
+  }
+}
+
+    .navbar {
+    position: relative; /* or 'fixed' if you want it to stay at the top while scrolling */
+    z-index: 10; 
+    background-color: #152a4f;
+    padding: 0.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .navbar-brand {
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .navbar-toggler {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    display: block; /* Show the toggler on all screen sizes */
+  }
+  
+  
+  .navbar-toggler:focus {
+    outline: none;
+  }
+  
+  .toggler-icon {
+    display: block;
+    width: 1.5rem;
+    height: 2px;
+    background-color: white;
+    margin: 4px 0;
+    transition: all 0.3s;
+  }
+  
+  .nav-menu {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-menu.collapsed {
+    display: none;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s;
+  }
+  
+  .nav-link:hover,
+  .nav-link.active {
+    color: #26a69a;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-toggler {
+      display: block;
+    }
+  
+    .nav-menu {
+      flex-direction: column;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background-color: #004d40;
+    }
+  }
+  .parallax {
+    background-image: url('https://www.chromethemer.com/wallpapers/chromebook-wallpapers/images/960/blue-technology-chromebook-wallpaper.jpg'); 
+    min-height: 100vh; /* Full height of the viewport */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 1;
+  }
+  
+  .home-content {
+    padding: 2rem 1rem; /* Responsive padding */
+    color: aliceblue;
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .home-content {
+      padding: 1.5rem 0.5rem;
+    }
+  
+    /* Adjust font sizes for smaller screens */
+    .home-content h1 {
+      font-size: 1.5rem;
+    }
+  
+    .home-content p {
+      font-size: 1rem;
+    }
+  }
+  
+  /* Additional styles for other elements if needed */
+ 
+  .gallery-section {
+    background-color: #f8f9fa; /* Light background for the section */
+    padding: 2rem; /* Spacing around the content */
+    text-align: center; /* Center-align the header */
+  }
+  
+  .gallery-section-header {
+    margin-bottom: 2rem; /* Space below the header */
+    color: #333; /* Dark text for contrast */
+  }
+  
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Responsive grid layout */
+    gap: 1rem; /* Spacing between grid items */
+    padding: 0;
+  }
+  
+  .image {
+    background-color: #fff; /* White background for each image */
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 1rem; /* Padding inside each image */
+    border-radius: 0.5rem; /* Rounded corners */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .image:hover {
+    transform: scale(1.05); /* Slightly scale up the image */
+    box-shadow: 0 0.75rem 1.5rem rgba(33, 113, 234, 0.29); /* Increase the shadow for a 'lifting' effect */
+  }
+  
+  .image img {
+    width: 100%; /* Ensure images fill their containers */
+    border-radius: 0.5rem; /* Rounded corners for images */
+  }
+  
+  .image h3 {
+    color: #004d40; /* Dark green color for image titles */
+    margin-bottom: 1rem; /* Space below the title */
+  }
+  
+  .image p {
+    text-align: left; /* Left-align image descriptions */
+    line-height: 1.6; /* Space out the lines */
+  }
+  
+
+
+  /* SectionComponent.css */
+.section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+
+.section-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.text-content h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.text-content p {
+  font-size: 16px;
+  color: #666;
+}
+
+.image-content {
+  /* Placeholder for the image dimensions */
+  width: 200px; /* Adjust as necessary */
+  height: 120px; /* Adjust as necessary */
+  background-color: #ddd; /* Placeholder color */
+}
+
+@media (max-width: 768px) {
+  .section-content {
+    flex-direction: column;
+  }
+
+  .image-content {
+    margin-top: 20px;
+  }
+}
+
+.feature-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px; /* This padding is inside the border */
+  margin: 20px 0;
+  border: 3px solid #b3b3b3; /* Adds a border with the color matching your navbar */
+  border-radius: 10px; /* Optional: rounds the corners of the border */
+}
+
+/* You might want to adjust the internal spacing of the text and image containers as well */
+.feature-text, .feature-image {
+  padding: 20px; /* Adjust padding to ensure content is not too close to the border */
+}
+
+/* Styles when text is on the right */
+.feature-section.right-text .feature-text {
+  order: 2; /* Text on the right */
+}
+
+.feature-section.right-text .feature-image {
+  order: 1; /* Image on the left */
+}
+
+/* Styles when text is on the left */
+.feature-section.left-text .feature-text {
+  order: 1; /* Text on the left */
+}
+
+.feature-section.left-text .feature-image {
+  order: 2; /* Image on the right */
+}
+
+.feature-text {
+  flex: 1;
+  padding: 0 20px; /* Spacing between text and image */
+  color: #000000;
+}
+
+.feature-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feature-image img {
+  width: 100%;
+  max-height: 300px; /* Adjust as needed */
+  object-fit: cover;
+}
+
+/* Ensure proper ordering on smaller screens */
+@media (max-width: 768px) {
+  .feature-section {
+    flex-direction: column;
+  }
+
+  .feature-text,
+  .feature-image {
+    order: unset;
+    padding: 0; /* Remove padding on smaller screens */
+  }
+
+  .feature-image img {
+    max-width: 100%;
+    max-height: 200px; /* Adjust for smaller screens */
+  }
+}
+.feature-text h2 {
+  color: #333; /* Dark color for visibility */
+  opacity: 0; /* Start with the text invisible */
+  animation: fadeInDown 4s ease infinite forwards; /* Apply the animation */
+  animation-delay: 0.5s; /* Delay the start of the animation */
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+ 
+
+/* Add this to your CSS file */
+.footer {
+  background-color: #262626; /* Dark background for the footer */
+  color: white;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif; /* Updated font */
+}
+
+.footer-content {
+  text-align: center;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px; /* Spacing between icons */
+  justify-content: center;
+}
+
+.footer-links a {
+  transition: transform 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.footer-links a:hover {
+  transform: translateY(-5px); /* Slight raise effect on hover */
+}
+
+.footer-links a img {
+  height: 25px; /* Keep images small */
+  width: auto; /* Maintain aspect ratio */
+  filter: grayscale(100%); /* Make icons grayscale */
+  transition: filter 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.footer-links a img:hover {
+  filter: grayscale(0); /* Full color on hover */
+}
+
+/* Style for small screens */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column; /* Stack elements vertically on small screens */
+  }
+
+  .footer-content p {
+    margin-bottom: 15px;
+    font-size: 14px; /* Smaller font size for small screens */
+  }
+
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-links a img {
+    margin-bottom: 10px;
+  }
+}
+
+/* Style for small screens */
+@media (max-width: 768px) {
+  .footer {
+    padding: 20px 10px; /* Reduce padding on smaller screens */
+  }
+
+  .footer-content p {
+    margin-bottom: 10px; /* Adjust spacing */
+  }
+
+  .footer-links {
+    flex-direction: row; /* Ensure icons line up horizontally */
+    justify-content: center; /* Center icons */
+    flex-wrap: nowrap; /* Prevent icons from wrapping */
+    gap: 10px; /* Adjust gap for smaller screens if necessary */
+  }
+
+  .footer-links a img {
+    height: 20px; /* Reduce size of icons for smaller screens */
+    margin-bottom: 0; /* Remove margin below icons */
+  }
+}
+
+
+.engage-section {
+  text-align: center;
+  margin: 40px 0;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.engage-section h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.engage-section p {
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+/* .btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #008cba;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #005f73;
+} */
+
+
+.dyscalculia-friendly-section {
+  background: #f9f9f9;
+  padding: 4rem 0;
+  text-align: center;
+}
+
+.dyscalculia-friendly-section .container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 1rem;
+}
+
+.dyscalculia-friendly-section h2 {
+  font-size: 2rem;
+  color: #324d67;
+  margin-bottom: 1rem;
+}
+
+.dyscalculia-friendly-section p {
+  color: #627d98;
+  margin-bottom: 2rem;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.tool-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.tool-card:hover {
+  transform: translateY(-5px);
+}
+
+.tool-card .icon-holder {
+  width: 100%; /* Set width to 100% of the card */
+  height: 0; /* Set height to 0 */
+  padding-top: 56.25%; /* Use padding-top to create aspect ratio */
+  position: relative; /* Use relative positioning for absolute child positioning */
+  margin-bottom: 1rem;
+}
+
+.tool-card img {
+  position: absolute; /* Position the image absolutely */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width of the .icon-holder */
+  height: 100%; /* Full height of the .icon-holder */
+  object-fit: cover; /* Cover the area without losing aspect ratio */
+}
+
+.tool-card h3 {
+  font-size: 1.5rem;
+  color: #324d67;
+  margin-bottom: 0.5rem;
+}
+
+.tool-card p {
+  color: #627d98;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  background-color: #4e8cde;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #3b6f9b;
+}
+
+@media (max-width: 768px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* Add this to create a subtle floating effect on cards */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Add a gradient animation to the navbar */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Apply the gradient background to the navbar */
+.navbar {
+  background: linear-gradient(-45deg, #152a4f, #2b549a, #7c95c0, #152a4f);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+
+/* Add a pulse effect on buttons */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0px rgba(0, 123, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(0, 123, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0px rgba(0, 123, 255, 0);
+  }
+}
+
+/* Apply the pulse effect to .btn elements */
+.btn {
+  animation: pulse 2s infinite;
+}
+
+/* Fade in up animation for the content */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Scale in for topic cards */
+@keyframes scaleIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.topic {
+  animation: scaleIn 0.5s ease forwards;
+}

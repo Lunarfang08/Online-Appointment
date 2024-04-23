@@ -1,0 +1,79 @@
+.math-game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('https://getwallpapers.com/wallpaper/full/a/0/8/23691.jpg') no-repeat center center fixed;
+    background-attachment: fixed;
+    background-position: center center;
+    box-sizing: border-box;
+    height: 100vh;
+  }
+  
+  .math-game {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+  }
+  
+  .problem {
+    margin-bottom: 20px;
+  }
+  
+  .problem p {
+    font-size: 18px;
+  }
+  
+  .answer-input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-button,
+  .next-button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover,
+  .next-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .feedback {
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+    animation: fadeOut 2s ease;
+  }
+  
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .math-game {
+      width: 95%;
+    }
+  }
+  .gamen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

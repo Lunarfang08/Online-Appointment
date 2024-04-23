@@ -1,0 +1,65 @@
+/* Game5.css */
+.img3{
+  background: url('https://getwallpapers.com/wallpaper/full/a/0/8/23691.jpg') no-repeat center center fixed; /* Add your image path */
+  background-attachment: fixed;
+  background-position: center center;
+  box-sizing: border-box;
+  height: 100vh; /* Set the height to cover the full viewport height */
+}
+.pattern-game-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f3f3f3;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.pattern-game-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.pattern-display {
+  font-size: 24px;
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #e7e7e7;
+  display: inline-block;
+  border-radius: 5px;
+}
+
+.pattern-input {
+  margin: 10px 0;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  width: calc(100% - 30px); /* Adjust input width considering padding */
+  transition: border-color 0.3s ease-in-out;
+}
+
+.pattern-input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.pattern-submit-btn, .pattern-change-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  margin: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.pattern-submit-btn:hover, .pattern-change-btn:hover {
+  background-color: #0056b3;
+}
+
+.pattern-score {
+  margin-top: 20px;
+}

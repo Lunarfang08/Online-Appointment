@@ -1,0 +1,85 @@
+/* Game7.css */
+.img4 {
+    background: url('https://getwallpapers.com/wallpaper/full/a/0/8/23691.jpg') no-repeat center center fixed;
+    background-attachment: fixed;
+    background-position: center center;
+    box-sizing: border-box;
+    height: 100vh;
+  }
+  
+  .number-item {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    background-color: #2e6585;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: white;
+  }
+  
+  .number-item.selected {
+    background-color: #4caf50; /* Green background for selected numbers */
+  }
+  
+  .number-sorting-game-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .number-sorting-game-title {
+    font-size: 2rem;
+    color: #fff;
+  }
+  
+  .hint {
+    font-style: italic;
+    color: #fff;
+  }
+  
+  .number-sorting-game-instruction {
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .number-container {
+    margin-bottom: 20px;
+  }
+  
+  .submit-button,
+  .generate-button {
+    font-size: 1rem;
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .submit-button:hover,
+  .generate-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .score-display {
+    font-size: 1.5rem;
+    color: #fff;
+    margin-top: 20px;
+  }
+  
+  .back-to-home {
+    display: block;
+    margin-top: 20px;
+    color: #fff;
+    text-decoration: none;
+  }
+  
