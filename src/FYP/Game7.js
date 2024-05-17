@@ -7,10 +7,18 @@ const NumberSortingGame = () => {
   const [sortedNumbers, setSortedNumbers] = useState([]);
   const [selectedIndices, setSelectedIndices] = useState([]);
   const [score, setScore] = useState(0);
+  const [previousScores, setPreviousScores] = useState(() => {
+    const storedScores = JSON.parse(localStorage.getItem('previousScores'));
+    return storedScores || [];
+  });
 
   useEffect(() => {
     generateNumbers();
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('previousScores', JSON.stringify(previousScores));
+  }, [previousScores]);
 
   const generateNumbers = () => {
     const newNumbers = [];
@@ -20,7 +28,6 @@ const NumberSortingGame = () => {
     setNumbers(newNumbers);
     setSortedNumbers([...newNumbers].sort((a, b) => a - b)); // Sort the generated numbers in ascending order
   };
-
   const handleNumberClick = (index) => {
     // Check if the index is already selected
     const isSelected = selectedIndices.includes(index);
@@ -34,16 +41,19 @@ const NumberSortingGame = () => {
   };
 
   const handleSubmit = () => {
-    // Check if the selected indices match the indices of sorted numbers
-    const isCorrect = JSON.stringify(selectedIndices.sort()) === JSON.stringify(sortedNumbers.map((_, index) => index).sort());
+    const selectedNumbers = selectedIndices.map(index => numbers[index]);
+    const isCorrect = JSON.stringify(selectedNumbers) === JSON.stringify(sortedNumbers);
+    
     if (isCorrect) {
       alert('Congratulations! You sorted the numbers correctly.');
-      setScore(score + 1); // Increase score if sorted correctly
-      setSelectedIndices([]); // Clear selected indices
-      generateNumbers(); // Generate new numbers
+      const newScore = score + 1;
+      setScore(newScore);
+      setSelectedIndices([]);
+      generateNumbers();
+      setPreviousScores([...previousScores, { score: newScore }]);
     } else {
       alert('Sorry, the order is incorrect. Please try again.');
-      setSelectedIndices([]); // Clear selected indices
+      setSelectedIndices([]);
     }
   };
 
@@ -71,6 +81,16 @@ const NumberSortingGame = () => {
           Generate New Numbers
         </button>
         <div className="score-display">Score: {score}</div> {/* Display the current score */}
+        <div className="prevsrco">
+          <h2 style={{color:'white'}}>Previous Scores:</h2>
+          <div className="slider-container">
+            <ul className="score-slider">
+            {previousScores.map((scoreObj, index) => (
+  <li key={index}>{scoreObj.score}</li>
+))}
+            </ul>
+          </div>
+        </div>
         <Link to="/play-game" className="back-to-home">
           Return
         </Link>

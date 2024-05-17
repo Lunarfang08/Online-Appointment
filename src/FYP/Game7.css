@@ -82,4 +82,37 @@
     color: #fff;
     text-decoration: none;
   }
+  .prevsrco{
+    margin-top: 20px;
+   
+  }
   
+  .slider-container {
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .score-slider {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  
+  .score-slider li {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+  }

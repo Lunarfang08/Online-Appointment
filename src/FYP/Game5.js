@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import "./Game5.css";
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './Game5.css';
 
 const generateNextNumber = (pattern) => {
   const length = pattern.length;
@@ -28,7 +28,7 @@ const generateNextNumber = (pattern) => {
   // Check if the sequence is prime (very basic check, not efficient for large numbers)
   else if (pattern.every((val) => {
     for (let i = 2, s = Math.sqrt(val); i <= s; i++)
-      if (val % i === 0) return false; 
+      if (val % i === 0) return false;
     return val > 1;
   })) {
     let i = pattern[length - 1] + 1;
@@ -70,25 +70,39 @@ const getRandomPattern = () => {
       return [5, 8, 11, 14, 17]; // Fallback to arithmetic
   }
 };
- 
 const PatternRecognitionGame = () => {
   const [pattern, setPattern] = useState(getRandomPattern());
   const [userInput, setUserInput] = useState('');
   const [score, setScore] = useState(0);
+  const [previousScores, setPreviousScores] = useState([]);
+
+  useEffect(() => {
+    const storedScores = JSON.parse(localStorage.getItem('patternRecognitionScores')) || [];
+    setPreviousScores(storedScores);
+  }, []);
 
   const checkAnswer = () => {
     const nextNumberInPattern = generateNextNumber(pattern);
     const userAnswer = parseInt(userInput.trim(), 10);
-
+  
     if (!isNaN(userAnswer) && userAnswer === nextNumberInPattern) {
       setScore(score + 1);
       setPattern(getRandomPattern()); // Change the pattern after a correct answer
       setUserInput('');
+      saveScore(); // Call saveScore function after each correct answer
     } else {
       alert('Incorrect! Try again.');
       setPattern(getRandomPattern()); // Reset the pattern on a wrong answer
       setUserInput('');
     }
+  };
+  
+
+
+  const saveScore = () => {
+    const updatedScores = [...previousScores, score];
+    localStorage.setItem('patternRecognitionScores', JSON.stringify(updatedScores));
+    setPreviousScores(updatedScores);
   };
 
   return (
@@ -109,6 +123,17 @@ const PatternRecognitionGame = () => {
         Submit
       </button>
       <p className="pattern-score">Score: {score}</p>
+      <button className="save-score-btn" onClick={saveScore}>
+        Save Score
+      </button>
+      <div className="previous-scores">
+        <h3>Previous Scores</h3>
+        <ul>
+          {previousScores.map((score, index) => (
+            <li key={index}>{score}</li>
+          ))}
+        </ul>
+      </div>
       <Link to="/play-game" className="back-to-home1">
         Return
       </Link>

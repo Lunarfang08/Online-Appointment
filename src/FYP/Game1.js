@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './Game1.css';
 import { Link } from 'react-router-dom';
-// Example numbers for card data structure
-const numbers = ['1', '2', '3', '4', '5', '6', '7', '8']; // Use strings for comparison
+
+const numbers = ['1', '2', '3', '4', '5', '6', '7', '8']; 
 
 const Game1 = () => {
   const [cards, setCards] = useState([]);
@@ -10,10 +10,12 @@ const Game1 = () => {
   const [choiceOne, setChoiceOne] = useState(null);
   const [choiceTwo, setChoiceTwo] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [previousScores, setPreviousScores] = useState([]);
+  const [userComment, setUserComment] = useState('');
+  const [sliderIndex, setSliderIndex] = useState(0); // Slider index to track visible scores
 
-  // Shuffle cards for a new game
   const shuffleCards = () => {
-    const shuffledNumbers = [...numbers, ...numbers] // Duplicate numbers for pairs
+    const shuffledNumbers = [...numbers, ...numbers]
       .sort(() => Math.random() - 0.5)
       .map(number => ({ number, id: Math.random(), matched: false, flipped: false }));
 
@@ -24,33 +26,31 @@ const Game1 = () => {
   };
 
   const handleChoice = (card) => {
-    if (!disabled && !card.flipped) { // Check if the game is not currently disabled and the card is not already flipped
-      card.flipped = true; // Mark the card as flipped
+    if (!disabled && !card.flipped) {
+      card.flipped = true;
       choiceOne ? setChoiceTwo(card) : setChoiceOne(card);
     }
   };
   
-  // Compare two selected cards
   useEffect(() => {
     if (choiceOne && choiceTwo) {
-      setDisabled(true); // Disable any further clicks
+      setDisabled(true);
       if (choiceOne.number === choiceTwo.number) {
         setCards(prevCards => {
           return prevCards.map(card => {
             if (card.number === choiceOne.number) {
-              return {...card, matched: true}; // Mark both cards as matched
+              return {...card, matched: true};
             } else {
               return card;
             }
           });
         });
-        resetTurn(); // Reset the turn after a short delay
+        resetTurn();
       } else {
-        // No match found, flip the cards back over after a delay
         setTimeout(() => {
           setCards(prevCards => {
             return prevCards.map(card => {
-              return {...card, flipped: false}; // Flip the card back over
+              return {...card, flipped: false};
             });
           });
           resetTurn();
@@ -59,7 +59,6 @@ const Game1 = () => {
     }
   }, [choiceOne, choiceTwo]);
 
-  // Reset choices and increase turn
   const resetTurn = () => {
     setChoiceOne(null);
     setChoiceTwo(null);
@@ -67,10 +66,42 @@ const Game1 = () => {
     setDisabled(false);
   };
 
-  // Start a new game automatically
   useEffect(() => {
     shuffleCards();
   }, []);
+
+  useEffect(() => {
+    const storedScores = sessionStorage.getItem('previousScores');
+    if (storedScores) {
+      setPreviousScores(JSON.parse(storedScores));
+    }
+  }, []);
+
+  const saveScore = () => {
+    const newScore = { score: turns, date: new Date().toLocaleString() };
+    const storedScores = JSON.parse(sessionStorage.getItem('previousScores')) || [];
+    const updatedScores = [...storedScores, newScore];
+    sessionStorage.setItem('previousScores', JSON.stringify(updatedScores));
+
+    if (turns >= 1 && turns <= 30) {
+      setUserComment('You have a good attention span. No short-term issues whatsoever.');
+    } else if (turns > 30 && turns <= 50) {
+      setUserComment('You need to work harder. More practice is required.');
+    } else {
+      setUserComment('Your performance suggests a need for additional support and practice.');
+    }
+  };
+
+  useEffect(() => {
+    const allMatched = cards.every(card => card.matched);
+    if (allMatched) {
+      saveScore();
+    }
+  }, [cards]);
+
+  const handleSliderChange = (event) => {
+    setSliderIndex(parseInt(event.target.value));
+  };
 
   return (
     <div className="game1">
@@ -91,10 +122,34 @@ const Game1 = () => {
       </div>
 
       <p className='MMM'>Turns: {turns}</p>
- 
+
       <Link to="/play-game" className="back-to-home">
         Return
       </Link>
+
+      {userComment && (
+        <div className="user-comment">
+          <p>{userComment}</p>
+        </div>
+      )}
+
+      <div className="previous-scores">
+        <h3>Previous Scores</h3>
+        <input 
+          type="range" 
+          min="0" 
+          max={previousScores.length - 1} 
+          value={sliderIndex} 
+          onChange={handleSliderChange} 
+        />
+        <ul>
+          {previousScores.map((score, index) => (
+            <li key={index} style={{ display: index >= sliderIndex && index < sliderIndex + 5 ? 'block' : 'none' }}>
+              Score:{score.score} - {score.date}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

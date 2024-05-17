@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import "./Game4.css";
+import './Game4.css';
 
 const LogicMaze = () => {
   const [currentPosition, setCurrentPosition] = useState({ x: 0, y: 0 });
@@ -8,6 +8,8 @@ const LogicMaze = () => {
   const [question, setQuestion] = useState(getNextQuestion());
   const [timer, setTimer] = useState(0);
   const [mazeFinished, setMazeFinished] = useState(false);
+  const [previousTimes, setPreviousTimes] = useState([]);
+  const [scrollAmount, setScrollAmount] = useState(0);
 
   useEffect(() => {
     let interval;
@@ -17,9 +19,15 @@ const LogicMaze = () => {
       }, 1000);
     } else {
       clearInterval(interval); // Stop the timer if the maze is finished
+      saveTime(timer); // Save the time when the maze is finished
     }
     return () => clearInterval(interval); // Cleanup function to clear interval on unmount
   }, [mazeFinished]);
+
+  useEffect(() => {
+    const storedTimes = JSON.parse(localStorage.getItem('logicMazeTimes')) || [];
+    setPreviousTimes(storedTimes);
+  }, []);
 
   const handleMove = (direction) => {
     let newX = currentPosition.x;
@@ -68,6 +76,16 @@ const LogicMaze = () => {
     return maze.every(row => row.every(cell => cell === 0));
   };
 
+  const saveTime = (time) => {
+    const updatedTimes = [...previousTimes, time];
+    localStorage.setItem('logicMazeTimes', JSON.stringify(updatedTimes));
+    setPreviousTimes(updatedTimes);
+  };
+
+  const handleSliderChange = (event) => {
+    setScrollAmount(parseInt(event.target.value, 10));
+  };
+
   return (
     <div className="logic-maze">
       <p className='col'><b>Benefits:</b> The Logic maze combines problem-solving challenges with arithmetic operations, providing benefits such as enhanced logical reasoning, mathematical skills, and critical thinking development.</p>
@@ -79,6 +97,24 @@ const LogicMaze = () => {
       {mazeFinished && (
         <div className="maze-finished">Congratulations! You finished the maze in {timer} seconds.</div>
       )}
+      <div className="previous-times">
+        <h3>Previous Times</h3>
+        <div className="slider-container">
+          <input
+            type="range"
+            min="0"
+            max={Math.max(0, previousTimes.length - 1) * 100} // Adjust based on the number of previous times
+            value={scrollAmount}
+            onChange={handleSliderChange}
+            className="slider"
+          />
+        </div>
+        <ul style={{ transform: `translateX(-${scrollAmount / 100}%)` }}>
+          {previousTimes.map((time, index) => (
+            <li key={index}>{time} seconds</li>
+          ))}
+        </ul>
+      </div>
       <Link to="/play-game" className="back-to-home">
         Return
       </Link>

@@ -60,3 +60,58 @@ button:hover {
   background-color: #45a049;
 }
 
+.previous-scores-container {
+  margin-top: 20px;
+  overflow-x: auto; /* Add horizontal scroll bar */
+  width: 60%; /* Adjust the width to fit the content */
+}
+
+.previous-scores-heading {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.previous-scores-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.previous-score-item {
+  margin-bottom: 5px;
+  font-size: 0.9em; /* Decrease font size */
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+.move {
+  font-weight: bold;
+}
+
+.time {
+  font-style: italic;
+}
+
+.slider-container {
+  overflow-x: auto;
+}
+
+.slider {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 10px;
+  scrollbar-width: thin; /* Show scrollbar */
+  scrollbar-color: #888 #f4f4f4; /* Color customization */
+}
+
+.slider::-webkit-scrollbar {
+  width: 12px; /* Width of scrollbar */
+}
+
+.slider::-webkit-scrollbar-track {
+  background: #f4f4f4; /* Track color */
+}
+
+.slider::-webkit-scrollbar-thumb {
+  background-color: #888; /* Thumb color */
+  border-radius: 6px; /* Round corners */
+}

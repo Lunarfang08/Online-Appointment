@@ -14,6 +14,14 @@ const Game = () => {
   const [difficulty, setDifficulty] = useState("easy"); // Default difficulty
   const [timerInput, setTimerInput] = useState(""); // Separate state for timer input
   const [isTimeUp, setIsTimeUp] = useState(false); // Flag to track if time is up
+  const [previousScores, setPreviousScores] = useState(() => {
+    const storedScores = localStorage.getItem("previousScores");
+    return storedScores ? JSON.parse(storedScores) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("previousScores", JSON.stringify(previousScores));
+  }, [previousScores]);
 
   useEffect(() => {
     let timer;
@@ -25,6 +33,7 @@ const Game = () => {
       // Game over logic
       alert(`Time's up! You have scored ${score} answers`);
       setIsTimeUp(true);
+      saveScore();
     }
 
     return () => clearTimeout(timer);
@@ -72,6 +81,14 @@ const Game = () => {
     setIsTimeUp(false); // Reset time up flag
   };
 
+  const saveScore = () => {
+    if (score > 0) {
+      const newScore = { score, date: new Date().toLocaleString() };
+      setPreviousScores((prevScores) => [...prevScores, newScore]);
+    }
+  };
+  
+
   return (
     <div className="im3">
       <div className="game-container">
@@ -90,7 +107,7 @@ const Game = () => {
         </div>
         <div className="input-container">
           <input
-            type="number1"
+            type="number"
             value={userInput}
             onChange={(e) => setUserInput(e.target.value)}
             placeholder="Enter the number"
@@ -116,6 +133,14 @@ const Game = () => {
           />
           <button onClick={startCustomTimer}>Start Timer</button>
           <button onClick={resetTimer}>Reset Timer</button>
+        </div>
+      </div>
+      <div className="previous-scores">
+        <h3>Previous Scores:</h3>
+        <div className="previous-scores-slider">
+          {previousScores.map((prevScore, index) => (
+            <div key={index} className="previous-score-item">Score:{`${prevScore.score} (${prevScore.date})`}</div>
+          ))}
         </div>
       </div>
       <Link to="/play-game" className="back-to-home">

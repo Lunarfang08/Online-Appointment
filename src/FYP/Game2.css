@@ -202,3 +202,27 @@ h1 {
     font-size: 1.8rem;
   }
 }
+.previous-scores {
+  margin-top: 20px;
+  overflow-x: auto;
+}
+
+.previous-scores ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.previous-scores ul li {
+  margin-right: 10px;
+  background-color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.previous-scores ul li:last-child {
+  margin-right: 0;
+}

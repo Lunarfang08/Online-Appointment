@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Game8.css";
 import { Link } from "react-router-dom";
+
 const BOARD_SIZE = 3;
 
 const initialBoard = () => {
@@ -88,10 +89,15 @@ const Game = () => {
   const [board, setBoard] = useState(initialBoard());
   const [goalBoard, setGoalBoard] = useState(initialBoard()); // New state for the goal board
   const [moves, setMoves] = useState(0);
-  const [startTime, setStartTime] = useState(null);
+  const [startTime, setStartTime] = useState(Date.now());
   const [endTime, setEndTime] = useState(null);
-  const [timeTaken, setTimeTaken] = useState(null); // New state for time taken
   const [solved, setSolved] = useState(false); // New state to track if puzzle is solved
+  const [previousScores, setPreviousScores] = useState(() => {
+    // Load previous scores from local storage
+    const scoresFromStorage = localStorage.getItem("previousScores");
+    return scoresFromStorage ? JSON.parse(scoresFromStorage) : [];
+  });
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     let shuffledBoard = shuffleEmptyBlock(initialBoard());
@@ -105,13 +111,6 @@ const Game = () => {
     setSolved(false); // Reset solved state
   }, []);
 
-  // Calculate time taken when endTime changes
-  useEffect(() => {
-    if (endTime) {
-      setTimeTaken((endTime - startTime) / 1000);
-    }
-  }, [endTime, startTime]);
-
   const handleTileClick = (value) => {
     const emptyPos = findEmptyPosition(board);
     const tilePos = findTilePosition(board, value);
@@ -119,10 +118,21 @@ const Game = () => {
       const newBoard = swapTiles(board, emptyPos, tilePos);
       setBoard(newBoard);
       setMoves(moves + 1);
-    }
-    if (isSolved(board)) {
-      setEndTime(Date.now());
-      setSolved(true); // Puzzle is solved
+      if (isSolved(newBoard)) {
+        setEndTime(Date.now());
+        setSolved(true); // Puzzle is solved
+        setMessage(getMessage(moves + 1, (Date.now() - startTime) / 1000)); // Set message
+        // Save the completed game's score to previous scores
+        const finalScore = {
+          move: moves + 1,
+          time: (Date.now() - startTime) / 1000,
+        };
+        setPreviousScores((prevScores) => [...prevScores, finalScore]);
+        localStorage.setItem(
+          "previousScores",
+          JSON.stringify([...previousScores, finalScore])
+        );
+      }
     }
   };
 
@@ -160,20 +170,27 @@ const Game = () => {
     return newBoard;
   };
 
-  // Move alert to a separate useEffect
-  useEffect(() => {
-    if (isSolved(board)) {
-      alert(`Congratulations! You have completed the puzzle in ${moves} move`);
+  const getMessage = (moves, time) => {
+    if (moves <= 5 && time <= 60) {
+      return "Wow! You solved it quickly with very few moves. Excellent!";
+    } else if (moves <= 10 && time <= 120) {
+      return "Great job! You solved it with relatively few moves and time.";
+    } else if (moves <= 15 && time <= 180) {
+      return "Nice work! You managed to solve it within a reasonable time.";
+    } else if (moves <= 20 && time <= 240) {
+      return "Well done! You solved it, though it took a bit longer.";
+    } else {
+      return "Keep practicing to improve your skills. You'll get there!";
     }
-  }, [solved, moves, timeTaken, board]);
+  };
 
   return (
     <div className="game">
       <h1>8 Puzzle Game</h1>
-      <b>Benefits:</b>Experience the 8 Puzzle Game, where you can sharpen your spatial
-        reasoning and logical thinking skills while having fun. It enhances problem-solving
-        abilities and numerical understanding, making it ideal for learners
-        seeking to boost their cognitive skills.
+      <b>Benefits:</b>Experience the 8 Puzzle Game, where you can sharpen your
+      spatial reasoning and logical thinking skills while having fun. It
+      enhances problem-solving abilities and numerical understanding, making it
+      ideal for learners seeking to boost their cognitive skills.
       <div className="goal-board">
         <h2>Goal Board</h2>
         <Board board={goalBoard} onClick={() => {}} />
@@ -182,6 +199,24 @@ const Game = () => {
         <h2>Current Board</h2>
         <Board board={board} onClick={handleTileClick} />
         <p>Moves: {moves}</p>
+        <p>Time: {(Date.now() - startTime) / 1000} seconds</p>
+      </div>
+      <div className="message-container">
+        <h3>Message:</h3>
+        <p>{message}</p>
+      </div>
+      <div className="previous-scores-container">
+        <h2 className="previous-scores-heading">Previous Scores</h2>
+        <div className="slider-container">
+          <div className="slider">
+            {previousScores.map((score, index) => (
+              <div key={index} className="previous-score-item">
+                Move: <span className="move">{score.move}</span> , Time:{" "}
+                <span className="time">{score.time} seconds</span> ,
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
       <Link to="/play-game" className="back-to-home">
         Return

@@ -63,3 +63,38 @@
 .pattern-score {
   margin-top: 20px;
 }
+
+.previous-scores {
+  margin-top: 20px;
+}
+
+.previous-scores h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.previous-scores ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.previous-scores li {
+  font-size: 16px;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+}
+
+.back-to-home1 {
+  display: block;
+  margin-top: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.back-to-home1:hover {
+  color: #555;
+}

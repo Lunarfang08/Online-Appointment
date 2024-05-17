@@ -113,74 +113,89 @@ const mathProblems = [
 ];
 
 function MathGame() {
-    const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
-    const [answer, setAnswer] = useState("");
-    const [showFeedback, setShowFeedback] = useState(false);
-    const [score, setScore] = useState(0);
-  
-    const totalProblems = mathProblems.length;
-  
-    const handleAnswerChange = (event) => {
-      setAnswer(event.target.value);
-    };
-  
-    const handleAnswerSubmit = () => {
-      if (answer === mathProblems[currentProblemIndex].answer) {
-        setShowFeedback(true);
-        setScore(score + 1);
-      } else {
-        setShowFeedback(false);
+  const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
+  const [answer, setAnswer] = useState("");
+  const [showFeedback, setShowFeedback] = useState(false);
+  const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(() => {
+    // Load best score from local storage
+    const bestScoreFromStorage = localStorage.getItem("mathGameBestScore");
+    return bestScoreFromStorage ? parseInt(bestScoreFromStorage) : 0;
+  });
+  const [message, setMessage] = useState("");
+
+  const totalProblems = mathProblems.length;
+
+  const handleAnswerChange = (event) => {
+    setAnswer(event.target.value);
+  };
+
+  const handleAnswerSubmit = () => {
+    if (answer === mathProblems[currentProblemIndex].answer) {
+      setShowFeedback(true);
+      setScore(score + 1);
+      setMessage("Correct! Well done.");
+    } else {
+      setShowFeedback(false);
+      setMessage("Incorrect. Keep trying!");
+    }
+  };
+
+  const handleNextProblem = () => {
+    if (currentProblemIndex + 1 < totalProblems) {
+      setCurrentProblemIndex(currentProblemIndex + 1);
+      setAnswer("");
+      setShowFeedback(false);
+      setMessage("");
+    } else {
+      if (score > bestScore) {
+        setBestScore(score);
+        localStorage.setItem("mathGameBestScore", score);
       }
-    };
-  
-    const handleNextProblem = () => {
-      if (currentProblemIndex + 1 < totalProblems) {
-        setCurrentProblemIndex(currentProblemIndex + 1);
-        setAnswer("");
-        setShowFeedback(false);
-      } else {
-        alert(`Congratulations! You've completed all the problems.Your score is ${score}`);
-      }
-    };
-  
-    useEffect(() => {
-      if (showFeedback && answer === mathProblems[currentProblemIndex].answer) {
-        const timeoutId = setTimeout(() => {
-          handleNextProblem();
-        }, 500); // Adjust the delay time as needed (in milliseconds)
-        return () => clearTimeout(timeoutId);
-      }
-    }, [showFeedback]);
-  
-    return (
-      <div className="math-game-container">
-        <div className="math-game">
-          <h4 className='gamen'><b>Enchanted Math Quest</b></h4>
-          <p><b>Benifit:</b> "Enchanted Math Quest" helps individuals with dyscalculia by offering structured practice in numerical concepts within an interactive setting, boosting both math proficiency and confidence.</p>
-          <div className="problem">
-            <p>{mathProblems[currentProblemIndex].problem}</p>
-            <input
-              type="text"
-              value={answer}
-              onChange={handleAnswerChange}
-              disabled={showFeedback}
-              className="answer-input"
-            />
-            <button onClick={handleAnswerSubmit} disabled={showFeedback} className="submit-button">
-              Submit
-            </button>
-            {showFeedback && <p className="feedback">Correct!</p>}
-          </div>
-          <div className="score">Score: {score}/{totalProblems}</div>
-          {!showFeedback && (
-            <button onClick={handleNextProblem} className="next-button">Next Problem</button>
-          )}
+      setMessage(`Congratulations! You've completed all the problems. Your score is ${score}`);
+    }
+  };
+
+  useEffect(() => {
+    if (showFeedback && answer === mathProblems[currentProblemIndex].answer) {
+      const timeoutId = setTimeout(() => {
+        handleNextProblem();
+      }, 500); // Adjust the delay time as needed (in milliseconds)
+      return () => clearTimeout(timeoutId);
+    }
+  }, [showFeedback]);
+
+  return (
+    <div className="math-game-container">
+      <div className="math-game">
+        <h4 className='gamen'><b>Enchanted Math Quest</b></h4>
+        <p><b>Benefit:</b> "Enchanted Math Quest" helps individuals with dyscalculia by offering structured practice in numerical concepts within an interactive setting, boosting both math proficiency and confidence.</p>
+        <div className="problem">
+          <p>{mathProblems[currentProblemIndex].problem}</p>
+          <input
+            type="text"
+            value={answer}
+            onChange={handleAnswerChange}
+            disabled={showFeedback}
+            className="answer-input"
+          />
+          <button onClick={handleAnswerSubmit} disabled={showFeedback} className="submit-button">
+            Submit
+          </button>
+          {showFeedback && <p className="feedback">Correct!</p>}
+          {message && <p className="message">{message}</p>}
         </div>
-        <Link to="/play-game" className="back-to-home">
+        <div className="score">Score: {score}/{totalProblems}</div>
+        <div className="best-score">Best Score: {bestScore}</div>
+        {!showFeedback && (
+          <button onClick={handleNextProblem} className="next-button">Next Problem</button>
+        )}
+      </div>
+      <Link to="/play-game" className="back-to-home">
         Return
       </Link>
-      </div>
-    );
-  }
-  
-  export default MathGame;
+    </div>
+  );
+}
+
+export default MathGame;

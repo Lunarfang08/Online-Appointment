@@ -79,3 +79,38 @@
     }
   }
   
+
+  .previous-scores {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent scores from wrapping */
+  }
+  
+  .previous-scores h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .previous-scores ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block; /* Make the list items inline */
+  }
+  
+  .previous-scores li {
+    display: inline-block; /* Make the list items inline */
+    margin-right: 10px; /* Add spacing between scores */
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .user-comment {
+    color: white;
+  }
+  
