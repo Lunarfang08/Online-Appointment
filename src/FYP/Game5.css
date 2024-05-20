@@ -4,7 +4,7 @@
   background-attachment: fixed;
   background-position: center center;
   box-sizing: border-box;
-  height: 100vh; /* Set the height to cover the full viewport height */
+  height: 109vh; /* Set the height to cover the full viewport height */
 }
 .pattern-game-container {
   max-width: 600px;

@@ -104,4 +104,6 @@
     margin-left: 10px;
     color: #4198f4;
   }
-  
+  .error-message{
+    color: white;
+  }

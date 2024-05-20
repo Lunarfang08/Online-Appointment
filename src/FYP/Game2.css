@@ -3,7 +3,7 @@
   background-attachment: fixed;
   background-position: center center;
   box-sizing: border-box;
-  height: 100vh; /* Set the height to cover the full viewport height */
+  height: 120vh; /* Set the height to cover the full viewport height */
 }
 .col{
   color: black;

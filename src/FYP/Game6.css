@@ -13,10 +13,7 @@
     text-align: center;
     transition: box-shadow 0.3s; /* Add transition for box-shadow */
   }
-  .game-container:hover {
-    transform: scale(1.05); /* Scale up the container on hover */
-    transition: transform 0.3s ease; /* Add smooth transition for scaling */
-  }
+
   
   .number1 {
     font-size: 6.2rem;
@@ -127,7 +124,7 @@
     max-width: 400px;
     overflow-x: auto;
     white-space: nowrap;
-    margin: 0 auto;
+    margin: 11px auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
