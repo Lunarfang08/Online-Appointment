@@ -1,0 +1,95 @@
+.todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+  
+    &:hover {
+      background-color: #e2e2e2;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  
+    .todo-content {
+      display: flex;
+      align-items: center;
+      flex: 1;
+  
+      input[type="checkbox"] {
+        margin-right: 10px;
+        cursor: pointer;
+      }
+  
+      span {
+        font-size: 16px;
+        transition: color 0.3s;
+  
+        &.completed {
+          text-decoration: line-through;
+          color: #888;
+        }
+      }
+  
+      input[type="text"] {
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 5px;
+        margin-left: 10px;
+        outline: none;
+      }
+    }
+  
+    .edit-button, .delete-button {
+      padding: 5px 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      margin-left: 5px;
+  
+      &:hover {
+        transform: scale(1.05);
+      }
+  
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  
+    .edit-button {
+      background-color: #3498db;
+      color: white;
+  
+      &:hover {
+        background-color: #2980b9;
+      }
+    }
+  
+    .delete-button {
+      background-color: #e74c3c;
+      color: white;
+  
+      &:hover {
+        background-color: #c0392b;
+      }
+    }
+  }
+  
+  // Responsive Design
+  @media (max-width: 768px) {
+    .todo-item {
+      flex-direction: column;
+      align-items: flex-start;
+  
+      .todo-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  }
