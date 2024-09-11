@@ -1,0 +1,293 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Navbar */
+.about-navbar {
+  background-color: #3b5384;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.about-navbar .about-logo img {
+  height: 50px;
+  border-radius: 10px;
+}
+
+.about-navbar .about-menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.about-menu-toggle .about-bar {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+.about-navbar .about-nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.about-navbar .about-nav-links li {
+  position: relative;
+}
+
+.about-navbar .about-nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.about-navbar .about-nav-links li a:hover {
+  color: #f39c12;
+  transform: scale(1.1);
+}
+
+/* Updated Navbar Menu for Centered Items */
+.about-navbar .about-nav-links.active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background-color: #2c3e50;
+  width: 100%;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center;
+}
+
+.about-navbar .about-nav-links.active li {
+  margin: 0;
+  width: 100%;
+}
+
+.about-navbar .about-nav-links.active li a {
+  font-size: 1.2rem;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+/* Main Content */
+.about-header {
+  padding: 2rem;
+  text-align: center;
+  background-color: #ecf0f1;
+  border-bottom: 2px solid #bdc3c7;
+  animation: slideIn 1s ease-out;
+}
+
+.about-header h1 {
+  font-size: 2.5rem;
+  color: #34495e;
+  margin-bottom: 1rem;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.about-header p {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+}
+
+/* Team Section */
+.about-team-section {
+  padding: 2rem;
+  text-align: center;
+  background-color: #f9f9f9;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.about-team-section h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  animation: slideInLeft 1s ease-out;
+}
+
+.about-team-members {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 1.5s ease-in-out;
+}
+
+.about-team-member {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  animation: bounceIn 1s ease-out;
+}
+
+.about-team-member:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.about-member-photo {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 50%;
+  margin: 0 auto 1rem;
+  animation: zoomIn 1s ease-in-out;
+}
+
+/* Mission Section */
+.about-mission-section {
+  padding: 2rem;
+  text-align: center;
+  background-color: #ecf0f1;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.about-mission-section h2 {
+  font-size: 2rem;
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  animation: slideInRight 1s ease-out;
+}
+
+.about-mission-section p {
+  font-size: 1.1rem;
+  color: #7f8c8d;
+}
+
+/* Footer */
+.about-footer {
+  background-color: #3b5384;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .about-navbar .about-nav-links {
+    display: none;
+  }
+
+  .about-navbar .about-menu-toggle {
+    display: flex;
+  }
+
+  .about-navbar .about-nav-links.active {
+    display: flex;
+  }
+
+  .about-menu-toggle .about-bar.open:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .about-menu-toggle .about-bar.open:nth-child(2) {
+    opacity: 0;
+  }
+
+  .about-menu-toggle .about-bar.open:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+}
+
+@media (max-width: 480px) {
+  .about-navbar .about-nav-links.active li a {
+    font-size: 0.9rem;
+  }
+
+  .about-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .about-team-member {
+    padding: 0.75rem;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

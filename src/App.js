@@ -1,23 +1,23 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './Todolist/Home';
-import TodoList from './Todolist/TodoList';
-import './App.scss';
+// import React from 'react';
+// import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+// import Home from './Todolist/Home';
+// import TodoList from './Todolist/TodoList';
+// import './App.scss';
 
-const App = () => {
-  return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/todolist" element={<TodoList />} />
-        </Routes>
-      </div>
-    </Router>
-  );
-};
+// const App = () => {
+//   return (
+//     <Router>
+//       <div className="App">
+//         <Routes>
+//           <Route path="/" element={<Home />} />
+//           <Route path="/todolist" element={<TodoList />} />
+//         </Routes>
+//       </div>
+//     </Router>
+//   );
+// };
 
-export default App;
+// export default App;
 
 
 // import React from "react";
@@ -62,8 +62,33 @@ export default App;
 // };
 
 // export default App;
-
+// & "C:\Program Files\Git\bin\git.exe" remote set-url origin (https://github.com/Lunarfang08/Todolist.git)
 // // & "C:\Program Files\Git\bin\git.exe" add .
 // // & "C:\Program Files\Git\bin\git.exe" commit -m "new project"
 // // & "C:\Program Files\Git\bin\git.exe" push origin main
 
+
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Book from './Healthcare-mgmt/Book';
+import About from './Healthcare-mgmt/About';
+import Contact from './Healthcare-mgmt/Contact';
+import Location from './Healthcare-mgmt/Location';
+import Receipt from './Healthcare-mgmt/Receipt';
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Book />} /> {/* Home Page */}
+          <Route path="/about" element={<About />} /> {/* About Page */}
+          <Route path="/contact" element={<Contact />} /> {/* About Page */}
+          <Route path="/location" element={<Location />} /> {/* About Page */}
+          <Route path="/receipt" element={<Receipt />} /> {/* About Page */}
+        </Routes>
+      </div>
+    </Router>
+  );
+}
+
+export default App;

@@ -1,0 +1,234 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f7f7f7;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #3b5384;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.navbar .logo img {
+  height: 50px;
+  border-radius: 19px;
+}
+
+.navbar .menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.menu-toggle .bar {
+  width: 30px;
+  height: 3px;
+  background-color: white;
+  margin: 5px 0;
+  transition: 0.3s;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar .nav-links li {
+  position: relative;
+}
+
+.navbar .nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.navbar .nav-links li a:hover {
+  color: #ffcc00;
+}
+
+/* Updated Navbar Menu for Centered Items */
+.navbar .nav-links.active {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 60px; /* Adjust if needed */
+  right: 0;
+  background-color: #3b5384;
+  width: 100%;
+  gap: 1rem;
+  padding: 1rem;
+  align-items: center; /* Center the items horizontally */
+}
+
+.navbar .nav-links.active li {
+  margin: 0;
+  width: 100%; /* Ensure items stretch full width */
+}
+
+.navbar .nav-links.active li a {
+  font-size: 1.2rem;
+  display: block;
+  text-align: center; /* Center text within the link */
+  width: 100%; /* Ensure the link takes full width */
+}
+
+/* Main Content */
+.main-content {
+  padding: 2rem;
+  text-align: center;
+  flex: 1;
+}
+
+.main-content h1 {
+  font-size: 2.5rem;
+  color: #0044cc;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Appointment Form */
+.appointment-form {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.appointment-form:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left; /* Align labels and input fields to the left */
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input, .form-group select {
+  width: 89%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.submit-btn {
+  background-color: #0044cc;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: #003399;
+  transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer */
+.footer {
+  background-color: #3b5384;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+}
+
+.footer-links li a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links li a:hover {
+  color: #ffcc00;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .navbar .nav-links {
+    display: none;
+  }
+
+  .navbar .menu-toggle {
+    display: flex;
+  }
+
+  .navbar .nav-links.active {
+    display: flex;
+  }
+
+  .menu-toggle.open .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 6px);
+  }
+
+  .menu-toggle.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.open .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -6px);
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar .nav-links.active li a {
+    font-size: 1rem;
+  }
+
+  .main-content h1 {
+    font-size: 2rem;
+  }
+
+  .appointment-form {
+    padding: 1.5rem;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}
+.error {
+  color: red;
+  font-size: 0.875em;
+  margin-top: 5px;
+}
